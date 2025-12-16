@@ -1,0 +1,353 @@
+@import "inc/custom-properties.css";
+@import 'inc/normalize.css';
+@import "inc/links.css";
+
+/* lato-regular - latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/lato-v17-latin-regular.woff2') format('woff2');
+}
+
+
+html{
+	font-family: system-ui, sans-serif;
+}
+
+body{
+	line-height: 1.5;
+  	color:#333;
+  	background: var(--light-bg);
+  	overflow-y:scroll;
+  	display:flex;
+  	flex-direction: column;
+  	height:100vh;
+  }
+
+main{
+	flex:1;
+}
+
+main, .mainnav{
+	font-family: 'Lato', sans-serif;
+	font-size: clamp(1rem, 0.82rem + 0.8vw, 1.3rem);
+	line-height: 1.5;
+}
+
+h1 abbr[title]{
+	text-decoration: none;
+	text-decoration: underline dotted;
+	cursor: help;
+}
+
+.contact-wrap{
+	background-color: rgb(255 255 255 / 0.1);
+	box-shadow: 0 4px 4px rgb(0 0 0 / 0.02);
+	border-top: 1px solid #442601;
+}
+
+
+.title {
+	font-size: 36px;
+	line-height: 1;
+	margin: 0;
+	font-weight: normal;
+}
+
+.subtitle{
+	font-size: 18px;
+	margin: 0;
+}
+
+.header a, .title, .subtitle{color:var(--white);}
+
+.title, .subtitle{
+	text-align: center;
+	text-shadow: 1px 1px 1px rgb(0 0 0 / 0.3);
+}
+
+#h, .h{width:60px; height:auto; fill:currentColor;}
+
+/* Header background moved to inline style in top.html for LCP optimization */
+
+.header{display:flex;
+	justify-content: center;
+	}
+
+.header a{
+	display:flex;
+	align-items: center;
+}
+
+.hgroup{margin:auto;}
+
+.header, .main-content, .footer{
+	max-width:var(--container-width);
+	padding: var(--container-padding);
+	margin: 0 auto;
+}
+
+.header{padding-bottom: 1em; padding-top: 1em;}
+
+main{
+	background-color: var(--white);
+	box-shadow: 0 -4px 4px rgb(0 0 0 / 0.05);
+}
+.main-content{padding-top: 10px; padding-bottom:1em;}
+
+main h1, main h2, summary{color:#283826;}
+main h1{
+	line-height: 1.3;
+	font-size: 1.8em;
+	text-wrap: balance;
+}
+main h2, summary{line-height: 1.3;
+	font-size:1.5em ;}
+
+main h1, main h2{
+	text-wrap: balance;
+}
+
+
+/* new faqs */
+.img-faq-wrap{
+	display:flex;
+	flex-direction: column;
+	margin-block:2em;
+}
+
+.faq-img{
+	border-radius: 50%;
+}
+
+[name] summary{
+	margin-bottom: .5em;
+}
+
+/* Modern details animation using ::details-content */
+details::details-content {
+	height: 0;
+	overflow: clip;
+	opacity: 0;
+	transition: 
+		height 0.4s ease,
+		opacity 0.4s ease,
+		content-visibility 0.4s ease allow-discrete;
+}
+
+details[open]::details-content {
+	height: auto;
+	opacity: 1;
+}
+
+/* Subtle slide animation for content */
+details[open] p, 
+details[open] ul {
+	animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media screen and (min-width: 800px){
+	.img-faq-wrap{
+		flex-direction: row;
+		gap:2em
+	}
+	
+}
+
+.footer{
+	display:flex;
+	justify-content:space-between;
+}
+
+.address [itemprop]>[itemprop]{display:block}
+
+.subnav{list-style-type:none; padding-left: 0;}
+.address{color:var(--link);
+	text-align: right;
+	line-height: 1.6;
+}
+
+.copy{
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	color:var(--link);
+	}
+
+.copy > span{
+	padding: 0 1em;
+	background-color: rgb(255 255 255 / 0.1);
+}
+
+.credit{width:100%; background-color: var(--white);}
+
+.cta-wrap{
+	display:flex;
+	flex-wrap: wrap;
+	width: 100%;
+	place-content: center;
+}
+.cta{
+	padding: .3em .8em;
+	border: 1px solid #271601;
+	background: linear-gradient(#402401, var(--primary)) var(--primary);
+	border-radius: .2em;
+	color: #dedede;
+	text-shadow: 0 -.05em .05em #335166;
+	font-size: 125%;
+	text-decoration: none;
+	text-align: center;
+	text-wrap: balance;
+	margin-top: clamp(1em, 2vw, 1em);
+	margin-bottom: clamp(1em, 1em + 2vw, 2em);
+}
+
+.cta:hover{color:var(--link-hover);}
+
+.flex{display:flex; flex-direction:column;}
+
+ul{padding-left: 20px;}
+
+.side-image{
+	box-shadow: 2px 2px 8px rgb(0 0 0 / 0.2);
+	margin: 0 auto 1em;
+	display: block;
+}
+
+.rounded{border-radius:50%;}
+
+
+
+.fr{margin-bottom: 1em;}
+.fr img{display:block; margin: 0 auto;}
+figcaption{text-align: center;}
+
+@media screen and (min-width:30em){
+
+	.header{padding-top: 20px;}
+	.footer{padding-top: .5em;}
+
+footer{
+	background:
+		linear-gradient(to right, rgb(255 255 255), transparent, rgb(255 255 255)),
+		url('../img/bg.avif') center center / cover;
+}
+
+	.main-content{
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+
+	main h1{line-height: 1.2;}
+
+	.flex{flex-direction:row;}
+	.flex.reverse{flex-direction: row-reverse;
+	align-items: center;}
+	.side-image{
+		margin: 0 0 0 2em;
+	
+	}
+	.flex.reverse .side-image{
+		margin: 0 2em 0 0;
+	
+	}
+
+
+	.fr{float:right;}
+
+}
+
+summary:hover{
+	cursor: pointer;
+}
+
+
+/* NEW TESTIMONIALS */
+.testimonials{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display:grid;
+	gap:1em;
+}
+
+.testimonials blockquote{
+	border-left: 7px solid var(--light-bg);
+	padding: .2em .5em .2em 1em;
+	margin: 0;
+	background-color: rgb(205 205 205 / 0.1);
+	box-shadow: 4px 4px 8px rgb(0 0 0 / 0.03);
+	border-radius: 4px;
+}
+
+.testimonials	blockquote cite{display:block; text-align: right;}
+
+@media screen and (min-width:800px){
+	.testimonials{grid-template-columns: repeat(2,1fr);
+		gap:1em 1.5em}
+}
+
+@media screen and (min-width:40em){
+
+	ul{padding-left: 40px;}
+
+	.title {
+		font-size: 54px;
+		line-height: 1;
+		margin: 0;
+	}
+
+	.subtitle{
+		font-size: 27px;
+		margin: 0;}
+
+	#h,.h{width:80px; height:auto;}
+
+}
+
+@media screen and (min-width:50em){
+
+	.title {
+		font-size: 72px;
+		line-height: 1;
+		margin: 0;
+	}
+
+	.subtitle{
+		font-size: 36px;
+		margin: 0;}
+
+	.testimonials blockquote{margin-right: 2em;}
+}
+
+/* Seasonal Content - Progressive Enhancement */
+/* When JavaScript is enabled, it will add 'js-enabled' class and handle showing/hiding */
+/* Without JavaScript, all seasonal content remains visible */
+.seasonal-content {
+	display: block;
+}
+
+/* Optional: Add some visual separation between sections when JS is disabled */
+.seasonal-content + .seasonal-content {
+	margin-top: 3em;
+	padding-top: 2em;
+	border-top: 1px solid rgb(0 0 0 / 0.1);
+}
+
+/* When JavaScript controls display, remove the borders between sections */
+html.js-enabled .seasonal-content + .seasonal-content {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: none;
+}

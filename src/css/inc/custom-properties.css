@@ -1,0 +1,12 @@
+:root{
+	--dark-bg: oklch(12% 0.02 250);
+	--light-bg: oklch(76% 0.045 70 / 0.2);
+	--primary: oklch(32% 0.075 45);
+	--link: oklch(24% 0.03 145);
+	--link-hover: oklch(100% 0 0);
+	--white: oklch(100% 0 0);
+	--black: oklch(0% 0 0);
+	--container-width:960px;
+	--container-padding:0 20px;
+	interpolate-size:allow-keywords;
+}

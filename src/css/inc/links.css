@@ -1,0 +1,135 @@
+main a{color:var(--primary);}
+
+.contact{
+	max-width:var(--container-width);
+	padding: var(--container-padding);
+	margin: 0 auto;
+	display:flex;
+	color:var(--link);
+	justify-content:space-between;
+	font-size:115%;
+}
+
+/* .contact > div {
+    padding: .5em 0 0;
+} */
+
+.contact a, .mainnav a, .subnav a {
+    color: var(--link);
+}
+
+.contact a:hover, .mainnav a:hover, .subnav a:hover{
+	color:var(--black);
+}
+
+.contact a{ 
+	display:block;
+	padding: .5em 0 .1em;
+	transition: transform 0.2s ease-out;
+}
+
+.contact a:hover{
+	transform: translateY(-3px);
+}
+
+.footer a{color:inherit;}
+.footer a:hover{text-decoration: none;}
+
+/*ICONS*/
+.icon{height: .93em; width:.75em; fill:rgba(40, 56, 38, .9);}
+.contact a:hover .icon{fill:rgba(40, 56, 38, 1);}
+.icon-email, .icon-phone, .icon-facebook{font-size: 24px;}
+
+
+.small-hide{position: absolute;top:-2000em;}
+
+@media screen and (min-width:30em){
+	.contact .small-hide{
+		position: relative;
+		top:-5px;
+		display:inline-block;
+		padding-left: .5em;}
+
+	.mainnav a{
+		padding:.5em 0;
+		font-size: 1.25em;}
+}
+
+/* MAIN NAVIGATION*/
+
+.mainnav{
+	max-width:var(--container-width);
+	padding: var(--container-padding);
+	margin: 0 auto;
+	display:flex;
+	justify-content:space-between;
+	list-style-type:none;
+	padding-bottom: .2em;
+}
+
+
+.mainnav li{
+	margin: 0;
+	padding: 0;
+}
+
+.mainnav .treatment,.facebook{align-self:center;text-align:left;}
+
+.mainnav a{
+	text-decoration:none;
+	display:block;
+	padding:.2em 0 0;
+	transition: border-color 300ms ease-out 0s;
+	position: relative;
+}
+
+.mainnav a[aria-current]{
+	  opacity: 0.8;
+}
+
+.mainnav a:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: var(--black);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.mainnav a:after{bottom: 0; left: 0;}
+
+.mainnav a[aria-current="page"]:after {
+  display: none;
+}
+
+.mainnav a:hover:before, .mainnav a:hover:after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.subnav{
+	margin-bottom: 0;
+}
+
+.subnav a{
+	display: block;
+	padding: .2em 1em .2em 0;
+	margin-bottom: .1em;
+}
+
+.subnav a[aria-current="page"] {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.credit{opacity:.4; text-align: right;}
+.credit:hover{opacity:.7}
+.credit a{color:inherit; display:block; text-decoration: none;
+	padding:.2em 1em;
+	}
+
+.credit a:hover{color:var(--black);}
+
+

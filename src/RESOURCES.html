@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Carmarthenshire Homeopath</title>
+		<meta name="description" content="Carmarthenshire based homeopath. Call 01267 237520. Alternative treatment / complementary therapy &amp; holistic medicine / medication for adults, children &amp; babies. Fully qualified practitioner/Society of Homeopaths registered homoeopath. Carmarthen practice, free introductory consultation." />
+		<meta name="theme-color" content="#B07C57"/>
+	<link rel="preload" as="image" href="img/bg.avif" fetchpriority="high">
+	<link href="css/style.css" rel="stylesheet">
+		
+		
+	</head>
+<body itemscope itemtype="http://schema.org/ProfessionalService">
+@@include('inc/top.html')
+<nav>
+	<ul class="mainnav">
+		<li><a href="index.html">Home</a></li>
+		<li><a href="treatment.html">Treatment</a></li>
+		<li><a href="testimonials.html">Testimonials</a></li>
+	</ul>
+</nav>
+
+<main>
+<div class="main-content">
+<h1>Resources</h1>
+<h2>Images</h2>
+<div class="images">
+	<img src="img/arnica.avif" alt="Arnica">
+	<img src="img/hypericum.avif" alt="Hypericum">
+	<img src="img/aconitum.avif" alt="Aconitum">
+	<img src="img/belladonna.avif" alt="Belladonna">
+	<img src="img/gelsemium.avif" alt="Gelsemium">
+	<img src="img/nux-vom.avif" alt="Nox Vom">
+	<img src="img/rhus-tox.avif" alt="Rhus Tox">
+	<img src="img/petra1.avif" alt="Petra">
+	<img src="img/petra2.avif" alt="Petra">
+	<img src="img/h.png" alt="H logo">
+	<img src="img/h.avif" alt="H logo">
+	<img src="img/bg.avif" alt="Field Background">
+</div>
+<h2>Seasonal Advice</h2>
+<p>Direct Links (content appears below links)</p>
+<ul class="sections-links">
+	<li><a href="#" data-day="30">Treatment of Fever (Jan 1 - Feb 28, Days 1-59)</a></li>
+	<li><a href="#" data-day="70">Spring Delights - and Pains (Mar 1 - Apr 21, Days 60-111)</a></li>
+	<li><a href="#" data-day="140">Hay Fever (Apr 22 - Jun 19, Days 112-170)</a></li>
+	<li><a href="#" data-day="200">Homeopathic Remedies for Travelling (Jun 20 - Aug 20, Days 171-232)</a></li>
+	<li><a href="#" data-day="250">Back to School (Aug 21 - Sep 30, Days 233-273)</a></li>
+	<li><a href="#" data-day="300">The Cold Season (Oct 1 - Nov 20, Days 274-324)</a></li>
+	<li><a href="#" data-day="350">Homeopathic Remedies for the Festive Season (Nov 21 - Dec 31, Days 325-366)</a></li>
+</ul>
+
+<div id="seasonal-content-display" style="margin-top: 2em; padding: 1em; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; display: none;">
+	<!-- Content will be loaded here -->
+</div>
+
+<script>
+(function() {
+	const contentDisplay = document.getElementById('seasonal-content-display');
+	const links = document.querySelectorAll('.sections-links a[data-day]');
+	
+	// Cache for fetched content
+	let seasonalSections = null;
+	
+	async function loadSeasonalContent() {
+		if (seasonalSections) return seasonalSections;
+		
+		try {
+			const response = await fetch('seasonal-advice.html');
+			const html = await response.text();
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(html, 'text/html');
+			seasonalSections = doc.querySelectorAll('.seasonal-content');
+			return seasonalSections;
+		} catch (error) {
+			console.error('Error loading seasonal content:', error);
+			return null;
+		}
+	}
+	
+	async function showSection(dayOfYear) {
+		const sections = await loadSeasonalContent();
+		if (!sections) {
+			contentDisplay.innerHTML = '<p>Error loading content.</p>';
+			contentDisplay.style.display = 'block';
+			return;
+		}
+		
+		let matchingSection = null;
+		sections.forEach(section => {
+			const start = parseInt(section.getAttribute('data-day-start'), 10);
+			const end = parseInt(section.getAttribute('data-day-end'), 10);
+			if (dayOfYear >= start && dayOfYear <= end) {
+				matchingSection = section;
+			}
+		});
+		
+		if (matchingSection) {
+			contentDisplay.innerHTML = matchingSection.innerHTML;
+			contentDisplay.style.display = 'block';
+			contentDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		}
+	}
+	
+	links.forEach(link => {
+		link.addEventListener('click', function(e) {
+			e.preventDefault();
+			const day = parseInt(this.getAttribute('data-day'), 10);
+			
+			// Update active state
+			links.forEach(l => l.style.fontWeight = 'normal');
+			this.style.fontWeight = 'bold';
+			
+			showSection(day);
+		});
+	});
+})();
+</script>
+</main>
+
+<footer>
+@@include('inc/footer.html')
+</footer>
+<div class="credit">
+	<a href="http://www.pontbren.com">Website by Pontbren</a>
+
+</div>
+</body>
+</html>
