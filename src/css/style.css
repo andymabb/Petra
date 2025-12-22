@@ -8,6 +8,7 @@
   font-style: normal;
   font-weight: 400;
   src: url('../fonts/lato-v17-latin-regular.woff2') format('woff2');
+  font-display: swap;
 }
 
 
@@ -123,6 +124,10 @@ main h1, main h2{
 
 [name] summary{
 	margin-bottom: .5em;
+}
+
+.faqs p, .faqs li{
+	font-size: 120%;
 }
 
 /* Modern details animation using ::details-content */

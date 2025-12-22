@@ -79,6 +79,19 @@
      * Show the appropriate seasonal content based on the day of year
      */
     function showSeasonalContent() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const showAll = urlParams.has('showAll');
+        
+        // If showAll parameter is present, show all content and exit
+        if (showAll) {
+            const sections = document.querySelectorAll('.seasonal-content');
+            sections.forEach(section => {
+                section.style.display = 'block';
+            });
+            console.log('Showing all seasonal content (showAll mode)');
+            return;
+        }
+        
         const date = getEffectiveDate();
         const dayOfYear = getAdjustedDayOfYear(date);
         

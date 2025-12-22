@@ -12,6 +12,7 @@ const browserSync = require('browser-sync');
 const cachebust = require('gulp-cache-bust');
 const fileInclude = require('gulp-file-include');
 const newer = require('gulp-newer');
+const { execSync } = require('child_process');
 
 const server = browserSync.create();
 
@@ -118,3 +119,30 @@ const watch = () => {
 
 const dev = gulp.series(html, css, js, img, fonts, serve, watch);
 exports.default=dev;
+
+// Deploy task: build, commit, and push to git
+function deploy(done) {
+  try {
+    console.log('Building site...');
+    execSync('gulp html css js img fonts', { stdio: 'inherit' });
+    
+    console.log('Adding changes to git...');
+    execSync('git add -A', { stdio: 'inherit' });
+    
+    const timestamp = new Date().toISOString().replace('T', ' ').substring(0, 19);
+    const message = process.env.COMMIT_MSG || `Update site - ${timestamp}`;
+    
+    console.log(`Committing: ${message}`);
+    execSync(`git commit -m "${message}"`, { stdio: 'inherit' });
+    
+    console.log('Pushing to GitHub...');
+    execSync('git push', { stdio: 'inherit' });
+    
+    console.log('✓ Deployed successfully!');
+    done();
+  } catch (error) {
+    console.log('Note: If there were no changes to commit, that\'s normal.');
+    done();
+  }
+}
+exports.deploy = deploy;
