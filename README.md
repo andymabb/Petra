@@ -73,10 +73,40 @@ petra/
 │   ├── inc/
 │   │   ├── top.html         # Header include (navigation)
 │   │   └── footer.html      # Footer include
-│   ├── img/                 # Images (AVIF, PNG)
+│   ├── _seasonal-files/     # Seasonal content HTML files
+│   │   ├── back-to-school.html
+│   │   ├── cold-season.html
+│   │   ├── festive-season.html
+│   │   ├── hay-fever.html
+│   │   ├── spring-delights.html
+│   │   ├── travelling.html
+│   │   └── treatment-of-fever.html
+│   ├── img/                 # Images (AVIF format)
+│   │   ├── aconitum.avif
+│   │   ├── arnica.avif
+│   │   ├── belladonna.avif
+│   │   ├── bg.avif
+│   │   ├── gelsemium.avif
+│   │   ├── h.avif
+│   │   ├── hypericum.avif
+│   │   ├── nux-vom.avif
+│   │   ├── petra1.avif
+│   │   ├── petra2.avif
+│   │   ├── petra3.avif
+│   │   └── rhus-tox.avif
 │   ├── fonts/               # Fonts (WOFF2 only)
-│   └── *.html               # Page templates
+│   ├── disclaimer.html
+│   ├── faq.html
+│   ├── homeopathy.html
+│   ├── index.html
+│   ├── links.html
+│   ├── RESOURCES.html
+│   ├── seasonal-advice.html
+│   ├── testimonials.html
+│   └── treatment.html
 ├── dist/                    # Built site (generated, not in repo)
+├── changes.md              # Detailed changelog
+├── check-links.js          # Link validation script
 ├── gulpfile.js             # Build configuration
 └── README.md               # This file
 ```
